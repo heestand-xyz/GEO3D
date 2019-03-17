@@ -20,6 +20,7 @@
 		74F72E55223EB47200900030 /* RawEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawEngine.swift; sourceTree = "<group>"; };
 		74F72E56223EB47200900030 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		74F72E57223EB47200900030 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		74FD5D22223EC75000B61BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +37,7 @@
 		74F72E3F223EB43400900030 = {
 			isa = PBXGroup;
 			children = (
+				74FD5D22223EC75000B61BAE /* README.md */,
 				74F72E4B223EB43400900030 /* Source */,
 				74F72E4A223EB43400900030 /* Products */,
 			);
