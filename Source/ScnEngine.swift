@@ -32,12 +32,12 @@ public class GEO3DScnObj: GEO3DObj {
     
     let node: SCNNode
     
-    public var pos: GEO3DVec { get { return node.position.vec } set { node.position = newValue.scnVec } }
-    public var rot: GEO3DVec { get { return node.eulerAngles.vec } set { node.eulerAngles = newValue.scnVec } }
-    public var scl: GEO3DVec { get { return node.scale.vec } set { node.scale = newValue.scnVec } }
+    public var position: GEO3DVec { get { return node.position.vec } set { node.position = newValue.scnVec } }
+    public var rotation: GEO3DVec { get { return node.eulerAngles.vec } set { node.eulerAngles = newValue.scnVec } }
+    public var scale: GEO3DVec { get { return node.scale.vec } set { node.scale = newValue.scnVec } }
     public var trans: GEO3DTrans {
-        get { return GEO3DTrans(pos: pos, rot: rot, scl: scl) }
-        set { pos = newValue.pos; rot = newValue.rot; scl = newValue.scl }
+        get { return GEO3DTrans(position: position, rotation: rotation, scale: scale) }
+        set { position = newValue.position; rotation = newValue.rotation; scale = newValue.scale }
     }
     
     public var color: UIColor? {
@@ -55,16 +55,16 @@ public class GEO3DScnObj: GEO3DObj {
     public func transform(to GEO3DTrans: GEO3DTrans) { trans = GEO3DTrans }
     public func transform(by GEO3DTrans: GEO3DTrans) { trans +*= GEO3DTrans }
     
-    public func position(to GEO3DCoord: GEO3DVec) { pos = GEO3DCoord }
-    public func position(by GEO3DCoord: GEO3DVec) { pos += GEO3DCoord }
+    public func move(to GEO3DCoord: GEO3DVec) { position = GEO3DCoord }
+    public func move(by GEO3DCoord: GEO3DVec) { position += GEO3DCoord }
     
-    public func rotate(to GEO3DCoord: GEO3DVec) { rot = GEO3DCoord }
-    public func rotate(by GEO3DCoord: GEO3DVec) { rot += GEO3DCoord }
+    public func rotate(to GEO3DCoord: GEO3DVec) { rotation = GEO3DCoord }
+    public func rotate(by GEO3DCoord: GEO3DVec) { rotation += GEO3DCoord }
     
-    public func scale(to GEO3DCoord: GEO3DVec) { scl = GEO3DCoord }
-    public func scale(by GEO3DCoord: GEO3DVec) { scl *= GEO3DCoord }
-    public func scale(to val: CGFloat) { scl = GEO3DVec(x: val, y: val, z: val) }
-    public func scale(by val: CGFloat) { scl *= GEO3DVec(x: val, y: val, z: val) }
+    public func scale(to GEO3DCoord: GEO3DVec) { scale = GEO3DCoord }
+    public func scale(by GEO3DCoord: GEO3DVec) { scale *= GEO3DCoord }
+    public func scale(to val: CGFloat) { scale = GEO3DVec(x: val, y: val, z: val) }
+    public func scale(by val: CGFloat) { scale *= GEO3DVec(x: val, y: val, z: val) }
     
 }
 
@@ -87,7 +87,7 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
 //    let cam: SCNCamera
 //    let camNode: SCNNode
 
-    init(ortho: Bool = false, debug: Bool, size: CGSize? = nil) {
+    public init(size: CGSize? = nil, ortho: Bool = false, debug: Bool = false) {
         
         let scnView: SCNView
         if let size = size {
@@ -120,7 +120,7 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
 ////            cam.orthographicScale = 1
 //        }
 //        camNode = SCNNode()
-//        camNode.position = SCNVector3(x: 0, y: 0, z: 1)
+//        camNode.move = SCNVector3(x: 0, y: 0, z: 1)
 //        camNode.camera = cam
 //        scn.rootNode.addChildNode(camNode)
         
@@ -166,7 +166,7 @@ public class GEO3DScnEngine: GEO3DEngine {
     public required init() {}
     
     public func createRoot(at size: CGSize? = nil) -> GEO3DRoot {
-        return GEO3DScnRoot(debug: debugMode, size: size)
+        return GEO3DScnRoot(size: size, debug: debugMode)
     }
     
     public func create(_ GEO3DObjKind: GEO3DObjKind) -> GEO3DObj {
@@ -201,12 +201,12 @@ public class GEO3DScnEngine: GEO3DEngine {
     
     public func create(triangle: GEO3DTriangle) -> GEO3DObj {
         
-//        var posArr: [GEO3DVec] = []
+//        var positionArr: [GEO3DVec] = []
 //        var iArr: [Int] = []
 //        var i = 0
 //        for poly in polys {
 //            for vert in poly.verts {
-//                posArr.append(vert.pos)
+//                positionArr.append(vert.position)
 //                iArr.append(i)
 //                i += 1
 //            }
@@ -219,9 +219,9 @@ public class GEO3DScnEngine: GEO3DEngine {
         let dat = Data(bytes: iArr, count: MemoryLayout<Int>.size * iArr.count)
         let element = SCNGeometryElement(data: dat, primitiveType: .triangles, primitiveCount: 1, bytesPerIndex: MemoryLayout<Int>.size)
         
-//        let posArr = triangle.verts.map { vert -> SCNVector3 in return vert.pos.scnVec }
+//        let positionArr = triangle.verts.map { vert -> SCNVector3 in return vert.position.scnVec }
 //        let normArr = triangle.verts.map { vert -> SCNVector3 in return vert.norm.scnVec }
-//        let sourceVerts = SCNGeometrySource(vertices: posArr)
+//        let sourceVerts = SCNGeometrySource(vertices: positionArr)
 //        let sourceNorms = SCNGeometrySource(normals: normArr)
 //        let sources = [sourceVerts, sourceNorms]
         let sources = createSources(from: triangle.verts)
@@ -235,18 +235,18 @@ public class GEO3DScnEngine: GEO3DEngine {
     
     public func create(line: GEO3DLine) -> GEO3DObj {
 
-//        var posArr: [GEO3DVec] = []
+//        var positionArr: [GEO3DVec] = []
 //        var iArr: [Int] = []
 //        var i = 0
 //        for poly in polys {
 //            for vert in poly.verts {
-//                posArr.append(vert.pos)
+//                positionArr.append(vert.position)
 //                iArr.append(i)
 //                i += 1
 //            }
 //        }
 
-//        let vertArr = line.verts.map { vert -> SCNVector3 in return vert.pos.scnVec }
+//        let vertArr = line.verts.map { vert -> SCNVector3 in return vert.position.scnVec }
 //        let normArr = line.verts.map { vert -> SCNVector3 in return vert.norm.scnVec }
 //        let iArr = [0, 1]
 //
@@ -278,9 +278,9 @@ public class GEO3DScnEngine: GEO3DEngine {
         }
         let floatVerts = verts.map { vert -> FloatVert in
             return FloatVert(
-                px: Float(vert.pos.x),
-                py: Float(vert.pos.y),
-                pz: Float(vert.pos.z),
+                px: Float(vert.position.x),
+                py: Float(vert.position.y),
+                pz: Float(vert.position.z),
                 nx: Float(vert.norm.x),
                 ny: Float(vert.norm.y),
                 nz: Float(vert.norm.z),

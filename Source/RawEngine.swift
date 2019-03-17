@@ -14,15 +14,15 @@ class GEO3DRawObj: GEO3DObj {
     
     let id: UUID
     
-    var pos: GEO3DVec { get { return GEO3DVec(xyz: 0.0) } set {} }
-    var rot: GEO3DVec { get { return GEO3DVec(xyz: 0.0) } set {} }
-    var scl: GEO3DVec { get { return GEO3DVec(xyz: 0.0) } set {} }
+    var position: GEO3DVec { get { return GEO3DVec(xyz: 0.0) } set {} }
+    var rotation: GEO3DVec { get { return GEO3DVec(xyz: 0.0) } set {} }
+    var scale: GEO3DVec { get { return GEO3DVec(xyz: 0.0) } set {} }
     var trans: GEO3DTrans {
         get {
             return GEO3DTrans(
-                pos:GEO3DVec(xyz: 0.0),
-                rot: GEO3DVec(xyz: 0.0),
-                scl: GEO3DVec(xyz: 0.0)
+                position:GEO3DVec(xyz: 0.0),
+                rotation: GEO3DVec(xyz: 0.0),
+                scale: GEO3DVec(xyz: 0.0)
             )
         }
         set {}
@@ -34,8 +34,8 @@ class GEO3DRawObj: GEO3DObj {
         id = UUID()
     }
     
-    func position(to GEO3DCoord: GEO3DVec) {}
-    func position(by GEO3DCoord: GEO3DVec) {}
+    func move(to GEO3DCoord: GEO3DVec) {}
+    func move(by GEO3DCoord: GEO3DVec) {}
     
     func rotate(to GEO3DCoord: GEO3DVec) {}
     func rotate(by GEO3DCoord: GEO3DVec) {}

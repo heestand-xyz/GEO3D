@@ -78,21 +78,21 @@ public struct GEO3DUV {
 
 infix operator +*=
 public struct GEO3DTrans {
-    public var pos: GEO3DVec
-    public var rot: GEO3DVec
-    public var scl: GEO3DVec
-    public static let identity = GEO3DTrans(pos: GEO3DVec.zero, rot: GEO3DVec.zero, scl: GEO3DVec.one)
+    public var position: GEO3DVec
+    public var rotation: GEO3DVec
+    public var scale: GEO3DVec
+    public static let identity = GEO3DTrans(position: GEO3DVec.zero, rotation: GEO3DVec.zero, scale: GEO3DVec.one)
     public static func == (lhs: GEO3DTrans, rhs: GEO3DTrans) -> Bool {
-        return lhs.pos == rhs.pos && lhs.rot == rhs.rot && lhs.scl == rhs.scl
+        return lhs.position == rhs.position && lhs.rotation == rhs.rotation && lhs.scale == rhs.scale
     }
     public static func != (lhs: GEO3DTrans, rhs: GEO3DTrans) -> Bool {
         return !(lhs == rhs)
     }
     public static func +*= (lhs: inout GEO3DTrans, rhs: GEO3DTrans) {
-        lhs.pos *= rhs.scl
-        lhs.pos += rhs.pos
-        lhs.rot += rhs.rot
-        lhs.scl *= rhs.scl
+        lhs.position *= rhs.scale
+        lhs.position += rhs.position
+        lhs.rotation += rhs.rotation
+        lhs.scale *= rhs.scale
     }
 }
 
@@ -102,11 +102,11 @@ public struct UV {
 }
 
 public struct GEO3DVert {
-    public let pos: GEO3DVec
+    public let position: GEO3DVec
     public let norm: GEO3DVec
     public let uv: UV
-    public init(_ pos: GEO3DVec) {
-        self.pos = pos
+    public init(_ position: GEO3DVec) {
+        self.position = position
         norm = GEO3DVec(x: 0, y: 0, z: 1)
         uv = UV(u: 0.5, v: 0.5)
     }

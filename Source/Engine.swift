@@ -12,15 +12,15 @@ public protocol GEO3DObj {
     
     var id: UUID { get }
     
-    var pos: GEO3DVec { get set }
-    var rot: GEO3DVec { get set }
-    var scl: GEO3DVec { get set }
+    var position: GEO3DVec { get set }
+    var rotation: GEO3DVec { get set }
+    var scale: GEO3DVec { get set }
     var trans: GEO3DTrans { get set }
     
     var color: UIColor? { get set }
     
-    func position(to GEO3DCoord: GEO3DVec)
-    func position(by GEO3DCoord: GEO3DVec)
+    func move(to GEO3DCoord: GEO3DVec)
+    func move(by GEO3DCoord: GEO3DVec)
     
     func rotate(to GEO3DCoord: GEO3DVec)
     func rotate(by GEO3DCoord: GEO3DVec)
