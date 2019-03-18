@@ -40,10 +40,17 @@ public class GEO3DScnObj: GEO3DObj {
         set { position = newValue.position; rotation = newValue.rotation; scale = newValue.scale }
     }
     
+    #if os(iOS)
     public var color: UIColor? {
         get { return node.geometry?.firstMaterial?.diffuse.contents as? UIColor }
         set { node.geometry?.firstMaterial?.diffuse.contents = newValue }
     }
+    #elseif os(macOS)
+    public var color: NSColor? {
+        get { return node.geometry?.firstMaterial?.diffuse.contents as? NSColor }
+        set { node.geometry?.firstMaterial?.diffuse.contents = newValue }
+    }
+    #endif
     
     init(geometry: SCNGeometry) {
         node = SCNNode(geometry: geometry)
@@ -72,27 +79,43 @@ public class GEO3DScnObj: GEO3DObj {
 
 public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
     
+    #if os(iOS)
     public var worldScale: CGFloat {
         get { return scn.rootNode.scale.vec.x }
         set { scn.rootNode.scale = SCNVector3(x: Float(newValue), y: Float(newValue), z: Float(newValue)) }
     }
+    #elseif os(macOS)
+    public var worldScale: CGFloat {
+        get { return scn.rootNode.scale.vec.x }
+        set { scn.rootNode.scale = SCNVector3(x: newValue, y: newValue, z: newValue) }
+    }
+    #endif
     
+    #if os(iOS)
     public let view: UIView
+    #elseif os(macOS)
+    public let view: NSView
+    #endif
     let scn = SCNScene()
     
+    #if os(iOS)
     public var snapshot: UIImage {
         return (view as! SCNView).snapshot()
     }
+    #elseif os(macOS)
+    public var snapshot: NSImage {
+        return (view as! SCNView).snapshot()
+    }
+    #endif
     
 //    let cam: SCNCamera
 //    let camNode: SCNNode
 
-    public init(size: CGSize? = nil, ortho: Bool = false, debug: Bool = false) {
+    public init(frame: CGRect? = nil, ortho: Bool = false, debug: Bool = false) {
         
         let scnView: SCNView
-        if let size = size {
-            let bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            scnView = SCNView(frame: bounds)
+        if let frame = frame {
+            scnView = SCNView(frame: frame)
         } else {
             scnView = SCNView()
         }
@@ -165,8 +188,8 @@ public class GEO3DScnEngine: GEO3DEngine {
     
     public required init() {}
     
-    public func createRoot(at size: CGSize? = nil) -> GEO3DRoot {
-        return GEO3DScnRoot(size: size, debug: debugMode)
+    public func createRoot(frame: CGRect? = nil) -> GEO3DRoot {
+        return GEO3DScnRoot(frame: frame, debug: debugMode)
     }
     
     public func create(_ GEO3DObjKind: GEO3DObjKind) -> GEO3DObj {

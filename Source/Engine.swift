@@ -6,7 +6,11 @@
 //  Copyright © 2018 Hexagons. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 public protocol GEO3DObj {
     
@@ -17,7 +21,11 @@ public protocol GEO3DObj {
     var scale: GEO3DVec { get set }
     var trans: GEO3DTrans { get set }
     
+    #if os(iOS)
     var color: UIColor? { get set }
+    #elseif os(macOS)
+    var color: NSColor? { get set }
+    #endif
     
     func move(to GEO3DCoord: GEO3DVec)
     func move(by GEO3DCoord: GEO3DVec)
@@ -39,8 +47,13 @@ public protocol GEO3DRoot: GEO3DObj {
     
     var id: UUID { get }
     
+    #if os(iOS)
     var view: UIView { get }
     var snapshot: UIImage { get }
+    #elseif os(macOS)
+    var view: NSView { get }
+    var snapshot: NSImage { get }
+    #endif
     
     var worldScale: CGFloat { get set }
 
@@ -73,7 +86,7 @@ public protocol GEO3DEngine {
 
     init()
     
-    func createRoot(at size: CGSize?) -> GEO3DRoot
+    func createRoot(frame: CGRect?) -> GEO3DRoot
     func addRoot(_ objRoot: GEO3DRoot)
     func removeRoot(_ objRoot: GEO3DRoot)
     

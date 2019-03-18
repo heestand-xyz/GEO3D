@@ -6,7 +6,11 @@
 //  Copyright © 2018 Hexagons. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 // MARK: Obj
 
@@ -28,7 +32,11 @@ class GEO3DRawObj: GEO3DObj {
         set {}
     }
     
+    #if os(iOS)
     var color: UIColor? = .clear
+    #elseif os(macOS)
+    var color: NSColor? = .clear
+    #endif
     
     init() {
         id = UUID()
@@ -55,16 +63,31 @@ class GEO3DRawObj: GEO3DObj {
 
 class GEO3DRawRoot: GEO3DRawObj, GEO3DRoot {
     
+    #if os(iOS)
     var view: UIView
+    #elseif os(macOS)
+    var view: NSView
+    #endif
     
+    #if os(iOS)
     var snapshot: UIImage {
         return UIImage(named: "")!
     }
+    #elseif os(macOS)
+    var snapshot: NSImage {
+        return NSImage(named: "")!
+    }
+    
+    #endif
     
     var worldScale: CGFloat = 1.0
     
     override init() {
+        #if os(iOS)
         view = UIView()
+        #elseif os(macOS)
+        view = NSView()
+        #endif
         super.init()
     }
     
@@ -89,7 +112,7 @@ class GEO3DRawEngine: GEO3DEngine {
     
     func debug() {}
     
-    func createRoot(at size: CGSize?) -> GEO3DRoot {
+    func createRoot(frame: CGRect?) -> GEO3DRoot {
         return GEO3DRawRoot()
     }
     
