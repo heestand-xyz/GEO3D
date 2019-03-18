@@ -73,6 +73,11 @@ public class GEO3DScnObj: GEO3DObj {
     public func scale(to val: CGFloat) { scale = GEO3DVec(x: val, y: val, z: val) }
     public func scale(by val: CGFloat) { scale *= GEO3DVec(x: val, y: val, z: val) }
     
+    public func add(_ obj: GEO3DObj) {
+        let scnGeo3DObj = obj as! GEO3DScnObj
+        node.addChildNode(scnGeo3DObj.node)
+    }
+    
 }
 
 // MARK: Root
@@ -121,7 +126,7 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
         }
         scnView.backgroundColor = .clear
         scnView.autoenablesDefaultLighting = true
-//        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = true
         scnView.scene = scn
         if debug {
             scnView.showsStatistics = true
@@ -151,7 +156,7 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
         
     }
     
-    public func add(_ obj: GEO3DObj) {
+    public override func add(_ obj: GEO3DObj) {
         let scnGeo3DObj = obj as! GEO3DScnObj
         scn.rootNode.addChildNode(scnGeo3DObj.node)
     }
@@ -201,7 +206,7 @@ public class GEO3DScnEngine: GEO3DEngine {
         case .plane:
             scnGeoPrim = GEO3DScnObj(geometry: SCNPlane(width: 1, height: 1))
         case .box:
-            scnGeoPrim = GEO3DScnObj(geometry: SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0))
+            scnGeoPrim = GEO3DScnObj(geometry: SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0.1))
         case .sphere:
             scnGeoPrim = GEO3DScnObj(geometry: SCNSphere(radius: 0.5)) // .isGeodesic
         case .pyramid:
@@ -322,6 +327,38 @@ public class GEO3DScnEngine: GEO3DEngine {
         
         return [vertexSource, normalSource, tcoordSource]
 
+    }
+    
+    func clone(obj: GEO3DObj) -> GEO3DObj {
+        return GEO3DScnObj(node: (obj as! GEO3DScnObj).node.clone())
+    }
+    
+    public func cloneGrid(obj: GEO3DObj,
+                          xCount: Int = 5,
+                          xRange: ClosedRange<CGFloat> = -0.5...0.5,
+                          yCount: Int = 5,
+                          yRange: ClosedRange<CGFloat> = -0.5...0.5,
+                          zCount: Int = 5,
+                          zRange: ClosedRange<CGFloat> = -0.5...0.5) -> GEO3DObj {
+        let node = create(.node)
+        for x in 0..<xCount {
+            let xf = CGFloat(x) / CGFloat(xCount - 1)
+            let xp = xRange.lowerBound + xf * (xRange.upperBound - xRange.lowerBound)
+            for y in 0..<yCount {
+                let yf = CGFloat(y) / CGFloat(yCount - 1)
+                let yp = yRange.lowerBound + yf * (yRange.upperBound - yRange.lowerBound)
+                for z in 0..<zCount {
+                    let zf = CGFloat(z) / CGFloat(zCount - 1)
+                    let zp = zRange.lowerBound + zf * (zRange.upperBound - zRange.lowerBound)
+                    var subNode = create(.node)
+                    let objClone = clone(obj: obj as! GEO3DScnObj)
+                    subNode.add(objClone)
+                    subNode.position = GEO3DVec(x: xp, y: yp, z: zp)
+                    node.add(subNode)
+                }
+            }
+        }
+        return node
     }
     
     public func addRoot(_ root: GEO3DRoot) {

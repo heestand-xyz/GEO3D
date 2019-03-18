@@ -10,9 +10,7 @@
 		3A874F1A223F907800DE2414 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E56223EB47200900030 /* Engine.swift */; };
 		3A874F1B223F907800DE2414 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E57223EB47200900030 /* Types.swift */; };
 		3A874F1C223F907800DE2414 /* ScnEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E54223EB47200900030 /* ScnEngine.swift */; };
-		3A874F1D223F907800DE2414 /* RawEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E55223EB47200900030 /* RawEngine.swift */; };
 		74F72E58223EB47200900030 /* ScnEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E54223EB47200900030 /* ScnEngine.swift */; };
-		74F72E59223EB47200900030 /* RawEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E55223EB47200900030 /* RawEngine.swift */; };
 		74F72E5A223EB47200900030 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E56223EB47200900030 /* Engine.swift */; };
 		74F72E5B223EB47200900030 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E57223EB47200900030 /* Types.swift */; };
 /* End PBXBuildFile section */
@@ -192,7 +190,6 @@
 			files = (
 				3A874F1A223F907800DE2414 /* Engine.swift in Sources */,
 				3A874F1C223F907800DE2414 /* ScnEngine.swift in Sources */,
-				3A874F1D223F907800DE2414 /* RawEngine.swift in Sources */,
 				3A874F1B223F907800DE2414 /* Types.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +201,6 @@
 				74F72E5B223EB47200900030 /* Types.swift in Sources */,
 				74F72E58223EB47200900030 /* ScnEngine.swift in Sources */,
 				74F72E5A223EB47200900030 /* Engine.swift in Sources */,
-				74F72E59223EB47200900030 /* RawEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

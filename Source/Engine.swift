@@ -41,6 +41,8 @@ public protocol GEO3DObj {
     func transform(to GEO3DTrans: GEO3DTrans)
     func transform(by GEO3DTrans: GEO3DTrans)
     
+    func add(_ obj: GEO3DObj)
+    
 }
 
 public protocol GEO3DRoot: GEO3DObj {
@@ -57,7 +59,6 @@ public protocol GEO3DRoot: GEO3DObj {
     
     var worldScale: CGFloat { get set }
 
-    func add(_ obj: GEO3DObj)
     func add(_ obj: GEO3DObj, to objParent: GEO3DObj)
     
     func remove(_ obj: GEO3DObj)
@@ -93,6 +94,14 @@ public protocol GEO3DEngine {
     func create(_ GEO3DObjKind: GEO3DObjKind) -> GEO3DObj
     func create(triangle: GEO3DTriangle) -> GEO3DObj
     func create(line: GEO3DLine) -> GEO3DObj
+    
+    func cloneGrid(obj: GEO3DObj,
+                   xCount: Int,
+                   xRange: ClosedRange<CGFloat>,
+                   yCount: Int,
+                   yRange: ClosedRange<CGFloat>,
+                   zCount: Int,
+                   zRange: ClosedRange<CGFloat>) -> GEO3DObj
 
     func debug()
     
