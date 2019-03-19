@@ -29,21 +29,60 @@ private extension SCNVector3 {
 public class GEO3DScnObj: GEO3DObj {
     
     public let id = UUID()
+    public var name: String?
     
     let node: SCNNode
     
-    public var position: GEO3DVec { get { return node.position.vec } set { node.position = newValue.scnVec } }
-    public var rotation: GEO3DVec { get { return node.eulerAngles.vec } set { node.eulerAngles = newValue.scnVec } }
-    public var scale: GEO3DVec { get { return node.scale.vec } set { node.scale = newValue.scnVec } }
+    public var sourceLinkObj: GEO3DObj?
+    public var linkObjs: [GEO3DObj] = []
+    public var linkNodes: [SCNNode] = []
+
+    public var position: GEO3DVec {
+        get { return node.position.vec }
+        set {
+            node.position = newValue.scnVec
+            for subNode in linkNodes {
+                subNode.position = newValue.scnVec
+            }
+        }
+    }
+    public var rotation: GEO3DVec {
+        get {
+            return node.eulerAngles.vec }
+        set {
+            node.eulerAngles = newValue.scnVec
+            for subNode in linkNodes {
+                subNode.eulerAngles = newValue.scnVec
+            }
+        }
+    }
+    public var scale: GEO3DVec {
+        get {
+            return node.scale.vec }
+        set {
+            node.scale = newValue.scnVec
+            for subNode in linkNodes {
+                subNode.scale = newValue.scnVec
+            }
+        }
+        
+    }
     public var trans: GEO3DTrans {
         get { return GEO3DTrans(position: position, rotation: rotation, scale: scale) }
         set { position = newValue.position; rotation = newValue.rotation; scale = newValue.scale }
     }
     
+    #if os(iOS)
     public var color: UIColor? {
         get { return node.geometry?.firstMaterial?.diffuse.contents as? UIColor }
         set { node.geometry?.firstMaterial?.diffuse.contents = newValue }
     }
+    #elseif os(macOS)
+    public var color: NSColor? {
+        get { return node.geometry?.firstMaterial?.diffuse.contents as? NSColor }
+        set { node.geometry?.firstMaterial?.diffuse.contents = newValue }
+    }
+    #endif
     
     init(geometry: SCNGeometry) {
         node = SCNNode(geometry: geometry)
@@ -66,39 +105,88 @@ public class GEO3DScnObj: GEO3DObj {
     public func scale(to val: CGFloat) { scale = GEO3DVec(x: val, y: val, z: val) }
     public func scale(by val: CGFloat) { scale *= GEO3DVec(x: val, y: val, z: val) }
     
+    public func add(_ obj: GEO3DObj) {
+        print("add", name ?? "-", "->", obj.name ?? "-")
+        let scnGeo3DObj = obj as! GEO3DScnObj
+        node.addChildNode(scnGeo3DObj.node)
+    }
+    
+    public func clone() -> GEO3DObj {
+        print("clone", name ?? "-")
+        let newNode = node.clone()
+        let subNode = SCNNode()
+        subNode.addChildNode(newNode)
+        let newObj = GEO3DScnObj(node: subNode)
+        link(newObj, with: newNode)
+        return newObj
+    }
+    
+    func link(_ newObj: GEO3DScnObj, with newNode: SCNNode) {
+        print("link", name ?? "-", "->", newObj.name ?? "-")
+        func connect(obj: GEO3DScnObj) {
+            obj.linkObjs.append(newObj)
+            obj.linkNodes.append(newNode)
+        }
+        func subLink(obj: GEO3DScnObj) {
+            if let linkObj = obj.sourceLinkObj as! GEO3DScnObj? {
+                connect(obj: linkObj)
+                subLink(obj: linkObj)
+            }
+        }
+        connect(obj: self)
+        subLink(obj: self)
+        newObj.sourceLinkObj = self
+    }
+    
 }
 
 // MARK: Root
 
 public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
     
+    #if os(iOS)
     public var worldScale: CGFloat {
         get { return scn.rootNode.scale.vec.x }
         set { scn.rootNode.scale = SCNVector3(x: Float(newValue), y: Float(newValue), z: Float(newValue)) }
     }
+    #elseif os(macOS)
+    public var worldScale: CGFloat {
+        get { return scn.rootNode.scale.vec.x }
+        set { scn.rootNode.scale = SCNVector3(x: newValue, y: newValue, z: newValue) }
+    }
+    #endif
     
+    #if os(iOS)
     public let view: UIView
+    #elseif os(macOS)
+    public let view: NSView
+    #endif
     let scn = SCNScene()
     
+    #if os(iOS)
     public var snapshot: UIImage {
         return (view as! SCNView).snapshot()
     }
+    #elseif os(macOS)
+    public var snapshot: NSImage {
+        return (view as! SCNView).snapshot()
+    }
+    #endif
     
 //    let cam: SCNCamera
 //    let camNode: SCNNode
 
-    public init(size: CGSize? = nil, ortho: Bool = false, debug: Bool = false) {
+    public init(frame: CGRect? = nil, ortho: Bool = false, debug: Bool = false) {
         
         let scnView: SCNView
-        if let size = size {
-            let bounds = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-            scnView = SCNView(frame: bounds)
+        if let frame = frame {
+            scnView = SCNView(frame: frame)
         } else {
             scnView = SCNView()
         }
         scnView.backgroundColor = .clear
         scnView.autoenablesDefaultLighting = true
-//        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = true
         scnView.scene = scn
         if debug {
             scnView.showsStatistics = true
@@ -128,7 +216,7 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
         
     }
     
-    public func add(_ obj: GEO3DObj) {
+    public override func add(_ obj: GEO3DObj) {
         let scnGeo3DObj = obj as! GEO3DScnObj
         scn.rootNode.addChildNode(scnGeo3DObj.node)
     }
@@ -167,8 +255,8 @@ public class GEO3DScnEngine: GEO3DEngine {
     
     public required init() {}
     
-    public func createRoot(at size: CGSize? = nil) -> GEO3DRoot {
-        return GEO3DScnRoot(size: size, debug: debugMode)
+    public func createRoot(frame: CGRect? = nil) -> GEO3DRoot {
+        return GEO3DScnRoot(frame: frame, debug: debugMode)
     }
     
     public func create(_ GEO3DObjKind: GEO3DObjKind) -> GEO3DObj {
@@ -180,7 +268,7 @@ public class GEO3DScnEngine: GEO3DEngine {
         case .plane:
             scnGeoPrim = GEO3DScnObj(geometry: SCNPlane(width: 1, height: 1))
         case .box:
-            scnGeoPrim = GEO3DScnObj(geometry: SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0))
+            scnGeoPrim = GEO3DScnObj(geometry: SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0.1))
         case .sphere:
             scnGeoPrim = GEO3DScnObj(geometry: SCNSphere(radius: 0.5)) // .isGeodesic
         case .pyramid:
@@ -301,6 +389,37 @@ public class GEO3DScnEngine: GEO3DEngine {
         
         return [vertexSource, normalSource, tcoordSource]
 
+    }
+    
+    public func clone(obj: GEO3DObj) -> GEO3DObj {
+        return (obj as! GEO3DScnObj).clone()
+    }
+    
+    public func cloneGrid(obj: GEO3DObj,
+                          xCount: Int = 5,
+                          xRange: ClosedRange<CGFloat> = -0.5...0.5,
+                          yCount: Int = 5,
+                          yRange: ClosedRange<CGFloat> = -0.5...0.5,
+                          zCount: Int = 5,
+                          zRange: ClosedRange<CGFloat> = -0.5...0.5) -> GEO3DObj {
+        var node = create(.node)
+        node.name = "Clone Grid"
+        for x in 0..<xCount {
+            let xf = CGFloat(x) / CGFloat(xCount - 1)
+            let xp = xRange.lowerBound + xf * (xRange.upperBound - xRange.lowerBound)
+            for y in 0..<yCount {
+                let yf = CGFloat(y) / CGFloat(yCount - 1)
+                let yp = yRange.lowerBound + yf * (yRange.upperBound - yRange.lowerBound)
+                for z in 0..<zCount {
+                    let zf = CGFloat(z) / CGFloat(zCount - 1)
+                    let zp = zRange.lowerBound + zf * (zRange.upperBound - zRange.lowerBound)
+                    var objClone = obj.clone()
+                    objClone.position = GEO3DVec(x: xp, y: yp, z: zp)
+                    node.add(objClone)
+                }
+            }
+        }
+        return node
     }
     
     public func addRoot(_ root: GEO3DRoot) {
