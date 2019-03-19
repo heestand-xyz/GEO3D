@@ -150,6 +150,8 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
 
 public class GEO3DScnEngine: GEO3DEngine {
     
+    public static let shared = GEO3DScnEngine()
+    
     public var debugMode: Bool = false
     public func debug() { debugMode = true }
         
