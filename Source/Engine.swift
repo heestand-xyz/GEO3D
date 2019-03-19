@@ -15,6 +15,10 @@ import AppKit
 public protocol GEO3DObj {
     
     var id: UUID { get }
+    var name: String? { get set }
+    
+    var sourceLinkObj: GEO3DObj? { get set }
+    var linkObjs: [GEO3DObj] { get set }
     
     var position: GEO3DVec { get set }
     var rotation: GEO3DVec { get set }
@@ -42,6 +46,8 @@ public protocol GEO3DObj {
     func transform(by GEO3DTrans: GEO3DTrans)
     
     func add(_ obj: GEO3DObj)
+    
+    func clone() -> GEO3DObj
     
 }
 
@@ -95,6 +101,7 @@ public protocol GEO3DEngine {
     func create(triangle: GEO3DTriangle) -> GEO3DObj
     func create(line: GEO3DLine) -> GEO3DObj
     
+    func clone(obj: GEO3DObj) -> GEO3DObj
     func cloneGrid(obj: GEO3DObj,
                    xCount: Int,
                    xRange: ClosedRange<CGFloat>,

@@ -29,12 +29,44 @@ private extension SCNVector3 {
 public class GEO3DScnObj: GEO3DObj {
     
     public let id = UUID()
+    public var name: String?
     
     let node: SCNNode
     
-    public var position: GEO3DVec { get { return node.position.vec } set { node.position = newValue.scnVec } }
-    public var rotation: GEO3DVec { get { return node.eulerAngles.vec } set { node.eulerAngles = newValue.scnVec } }
-    public var scale: GEO3DVec { get { return node.scale.vec } set { node.scale = newValue.scnVec } }
+    public var sourceLinkObj: GEO3DObj?
+    public var linkObjs: [GEO3DObj] = []
+    public var linkNodes: [SCNNode] = []
+
+    public var position: GEO3DVec {
+        get { return node.position.vec }
+        set {
+            node.position = newValue.scnVec
+            for subNode in linkNodes {
+                subNode.position = newValue.scnVec
+            }
+        }
+    }
+    public var rotation: GEO3DVec {
+        get {
+            return node.eulerAngles.vec }
+        set {
+            node.eulerAngles = newValue.scnVec
+            for subNode in linkNodes {
+                subNode.eulerAngles = newValue.scnVec
+            }
+        }
+    }
+    public var scale: GEO3DVec {
+        get {
+            return node.scale.vec }
+        set {
+            node.scale = newValue.scnVec
+            for subNode in linkNodes {
+                subNode.scale = newValue.scnVec
+            }
+        }
+        
+    }
     public var trans: GEO3DTrans {
         get { return GEO3DTrans(position: position, rotation: rotation, scale: scale) }
         set { position = newValue.position; rotation = newValue.rotation; scale = newValue.scale }
@@ -74,8 +106,36 @@ public class GEO3DScnObj: GEO3DObj {
     public func scale(by val: CGFloat) { scale *= GEO3DVec(x: val, y: val, z: val) }
     
     public func add(_ obj: GEO3DObj) {
+        print("add", name ?? "-", "->", obj.name ?? "-")
         let scnGeo3DObj = obj as! GEO3DScnObj
         node.addChildNode(scnGeo3DObj.node)
+    }
+    
+    public func clone() -> GEO3DObj {
+        print("clone", name ?? "-")
+        let newNode = node.clone()
+        let subNode = SCNNode()
+        subNode.addChildNode(newNode)
+        let newObj = GEO3DScnObj(node: subNode)
+        link(newObj, with: newNode)
+        return newObj
+    }
+    
+    func link(_ newObj: GEO3DScnObj, with newNode: SCNNode) {
+        print("link", name ?? "-", "->", newObj.name ?? "-")
+        func connect(obj: GEO3DScnObj) {
+            obj.linkObjs.append(newObj)
+            obj.linkNodes.append(newNode)
+        }
+        func subLink(obj: GEO3DScnObj) {
+            if let linkObj = obj.sourceLinkObj as! GEO3DScnObj? {
+                connect(obj: linkObj)
+                subLink(obj: linkObj)
+            }
+        }
+        connect(obj: self)
+        subLink(obj: self)
+        newObj.sourceLinkObj = self
     }
     
 }
@@ -329,8 +389,8 @@ public class GEO3DScnEngine: GEO3DEngine {
 
     }
     
-    func clone(obj: GEO3DObj) -> GEO3DObj {
-        return GEO3DScnObj(node: (obj as! GEO3DScnObj).node.clone())
+    public func clone(obj: GEO3DObj) -> GEO3DObj {
+        return (obj as! GEO3DScnObj).clone()
     }
     
     public func cloneGrid(obj: GEO3DObj,
@@ -340,7 +400,8 @@ public class GEO3DScnEngine: GEO3DEngine {
                           yRange: ClosedRange<CGFloat> = -0.5...0.5,
                           zCount: Int = 5,
                           zRange: ClosedRange<CGFloat> = -0.5...0.5) -> GEO3DObj {
-        let node = create(.node)
+        var node = create(.node)
+        node.name = "Clone Grid"
         for x in 0..<xCount {
             let xf = CGFloat(x) / CGFloat(xCount - 1)
             let xp = xRange.lowerBound + xf * (xRange.upperBound - xRange.lowerBound)
@@ -350,11 +411,9 @@ public class GEO3DScnEngine: GEO3DEngine {
                 for z in 0..<zCount {
                     let zf = CGFloat(z) / CGFloat(zCount - 1)
                     let zp = zRange.lowerBound + zf * (zRange.upperBound - zRange.lowerBound)
-                    var subNode = create(.node)
-                    let objClone = clone(obj: obj as! GEO3DScnObj)
-                    subNode.add(objClone)
-                    subNode.position = GEO3DVec(x: xp, y: yp, z: zp)
-                    node.add(subNode)
+                    var objClone = obj.clone()
+                    objClone.position = GEO3DVec(x: xp, y: yp, z: zp)
+                    node.add(objClone)
                 }
             }
         }
