@@ -215,12 +215,14 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
         
         super.init(node: scn.rootNode)
         
+        scn.rootNode.addChildNode(node)
+        
     }
     
-    public override func add(_ obj: GEO3DObj) {
-        let scnGeo3DObj = obj as! GEO3DScnObj
-        scn.rootNode.addChildNode(scnGeo3DObj.node)
-    }
+//    public override func add(_ obj: GEO3DObj) {
+//        let scnGeo3DObj = obj as! GEO3DScnObj
+//        scn.rootNode.addChildNode(scnGeo3DObj.node)
+//    }
     
     public func add(_ obj: GEO3DObj, to objParent: GEO3DObj) {
         let scnGeo3DObj = obj as! GEO3DScnObj
