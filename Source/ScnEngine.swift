@@ -33,17 +33,17 @@ public class GEO3DScnObj: GEO3DObj {
     
     let node: SCNNode
     
-    public var sourceLinkObj: GEO3DObj?
-    public var linkObjs: [GEO3DObj] = []
-    public var linkNodes: [SCNNode] = []
+//    public var sourceLinkObj: GEO3DObj?
+//    public var linkObjs: [GEO3DObj] = []
+//    public var linkNodes: [SCNNode] = []
 
     public var position: GEO3DVec {
         get { return node.position.vec }
         set {
             node.position = newValue.scnVec
-            for subNode in linkNodes {
-                subNode.position = newValue.scnVec
-            }
+//            for subNode in linkNodes {
+//                subNode.position = newValue.scnVec
+//            }
         }
     }
     public var rotation: GEO3DVec {
@@ -51,9 +51,9 @@ public class GEO3DScnObj: GEO3DObj {
             return node.eulerAngles.vec }
         set {
             node.eulerAngles = newValue.scnVec
-            for subNode in linkNodes {
-                subNode.eulerAngles = newValue.scnVec
-            }
+//            for subNode in linkNodes {
+//                subNode.eulerAngles = newValue.scnVec
+//            }
         }
     }
     public var scale: GEO3DVec {
@@ -61,9 +61,9 @@ public class GEO3DScnObj: GEO3DObj {
             return node.scale.vec }
         set {
             node.scale = newValue.scnVec
-            for subNode in linkNodes {
-                subNode.scale = newValue.scnVec
-            }
+//            for subNode in linkNodes {
+//                subNode.scale = newValue.scnVec
+//            }
         }
         
     }
@@ -114,29 +114,30 @@ public class GEO3DScnObj: GEO3DObj {
     public func clone() -> GEO3DObj {
         print("clone", name ?? "-")
         let newNode = node.clone()
-        let subNode = SCNNode()
-        subNode.addChildNode(newNode)
-        let newObj = GEO3DScnObj(node: subNode)
-        link(newObj, with: newNode)
+//        let subNode = SCNNode()
+//        subNode.addChildNode(newNode)
+        let newObj = GEO3DScnObj(node: newNode/*subNode*/)
+//        link(newObj, with: newNode)
         return newObj
     }
     
-    func link(_ newObj: GEO3DScnObj, with newNode: SCNNode) {
-        print("link", name ?? "-", "->", newObj.name ?? "-")
-        func connect(obj: GEO3DScnObj) {
-            obj.linkObjs.append(newObj)
-            obj.linkNodes.append(newNode)
-        }
-        func subLink(obj: GEO3DScnObj) {
-            if let linkObj = obj.sourceLinkObj as! GEO3DScnObj? {
-                connect(obj: linkObj)
-                subLink(obj: linkObj)
-            }
-        }
-        connect(obj: self)
-        subLink(obj: self)
-        newObj.sourceLinkObj = self
-    }
+//    func link(_ newObj: GEO3DScnObj, with newNode: SCNNode) {
+//        print("link", name ?? "-", "->", newObj.name ?? "-")
+//        func connect(obj: GEO3DScnObj) {
+//            obj.linkObjs.append(newObj)
+//            obj.linkNodes.append(newNode)
+//        }
+//        func subLink(obj: GEO3DScnObj) {
+//            if let linkObj = obj.sourceLinkObj as! GEO3DScnObj? {
+//                print("subLink linkObj:", obj.name ?? "-")
+//                connect(obj: linkObj)
+//                subLink(obj: linkObj)
+//            }
+//        }
+//        connect(obj: self)
+//        subLink(obj: self)
+//        newObj.sourceLinkObj = self
+//    }
     
 }
 
@@ -186,7 +187,7 @@ public class GEO3DScnRoot: GEO3DScnObj, GEO3DRoot {
         }
         scnView.backgroundColor = .clear
         scnView.autoenablesDefaultLighting = true
-        scnView.allowsCameraControl = true
+//        scnView.allowsCameraControl = true
         scnView.scene = scn
         if debug {
             scnView.showsStatistics = true

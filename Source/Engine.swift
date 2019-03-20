@@ -17,8 +17,8 @@ public protocol GEO3DObj {
     var id: UUID { get }
     var name: String? { get set }
     
-    var sourceLinkObj: GEO3DObj? { get set }
-    var linkObjs: [GEO3DObj] { get set }
+//    var sourceLinkObj: GEO3DObj? { get set }
+//    var linkObjs: [GEO3DObj] { get set }
     
     var position: GEO3DVec { get set }
     var rotation: GEO3DVec { get set }
