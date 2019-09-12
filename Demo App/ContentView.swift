@@ -13,16 +13,14 @@ struct ContentView: View {
     @ObservedObject var sphere = SphereGEO()
     @ObservedObject var box = BoxGEO()
     @ObservedObject var node = NodeGEO()
-//    @State var sphere = SphereGEO()
-//    @State var box = BoxGEO()
-//    @State var node = NodeGEO()
     var body: some View {
         VStack {
             GEORepView(geo: sphere)
-//            Slider(value: sphere.scale.y.bond)
+            Text("\(sphere.position.y)")
+            Slider(value: $sphere.position.y)
             GEORepView(geo: box)
-            Text("\(box.y)")
-            Slider(value: $box.y)
+            Text("\(box.position.y)")
+            Slider(value: $box.position.y)
         }
     }
 }
