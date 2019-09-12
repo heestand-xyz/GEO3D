@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import SwiftUI
 
 public struct G3Vec {
     public var x: CGFloat

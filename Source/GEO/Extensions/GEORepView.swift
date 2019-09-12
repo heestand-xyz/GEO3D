@@ -9,7 +9,6 @@
 import UIKit
 import SwiftUI
 
-@available(iOS 13.0, *)
 public struct GEORepView: UIViewRepresentable {
         
     public let geo: GEO

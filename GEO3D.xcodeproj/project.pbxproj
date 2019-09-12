@@ -3,14 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		237C3D5AC33DC1D76AF0AE40 /* Pods_GEO3D_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61BF4704DF04AE3FE6DA6A40 /* Pods_GEO3D_macOS.framework */; };
 		3A2840B0232A2FF1004A43B6 /* GEORepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2840AF232A2FF1004A43B6 /* GEORepView.swift */; };
 		3A2840B3232A30F8004A43B6 /* GEO3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F72E49223EB43400900030 /* GEO3D.framework */; };
 		3A2840B4232A30F8004A43B6 /* GEO3D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 74F72E49223EB43400900030 /* GEO3D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3A296F05232A6A9A0089F106 /* BoxGEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A296F04232A6A9A0089F106 /* BoxGEO.swift */; };
+		3A296F06232A6A9A0089F106 /* BoxGEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A296F04232A6A9A0089F106 /* BoxGEO.swift */; };
+		3A296F08232A6B7D0089F106 /* GEOContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A296F07232A6B7D0089F106 /* GEOContent.swift */; };
+		3A296F09232A6B7D0089F106 /* GEOContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A296F07232A6B7D0089F106 /* GEOContent.swift */; };
+		3A296F0B232A6BD80089F106 /* GEOEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A296F0A232A6BD80089F106 /* GEOEffect.swift */; };
+		3A296F0C232A6BD80089F106 /* GEOEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A296F0A232A6BD80089F106 /* GEOEffect.swift */; };
 		3A31C5C7232A212A00373EA3 /* GEO3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31C5C6232A212A00373EA3 /* GEO3D.swift */; };
 		3A31C5D1232A253D00373EA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31C5D0232A253D00373EA3 /* AppDelegate.swift */; };
 		3A31C5D3232A253D00373EA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31C5D2232A253D00373EA3 /* SceneDelegate.swift */; };
@@ -26,18 +31,14 @@
 		3A31C5EE232A2E5100373EA3 /* Obj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31C5EB232A2DD300373EA3 /* Obj.swift */; };
 		3A31C5EF232A2E5700373EA3 /* ScnRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31C5E3232A2D7D00373EA3 /* ScnRoot.swift */; };
 		3A31C5F0232A2E5900373EA3 /* ScnObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31C5E5232A2D8600373EA3 /* ScnObj.swift */; };
-		3A84C9F1232A465B00CB6888 /* LiveVec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84C9F0232A465B00CB6888 /* LiveVec.swift */; };
-		3A84C9F2232A47A900CB6888 /* LiveVec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A84C9F0232A465B00CB6888 /* LiveVec.swift */; };
 		3A874F1A223F907800DE2414 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E56223EB47200900030 /* Engine.swift */; };
 		3A874F1C223F907800DE2414 /* ScnEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E54223EB47200900030 /* ScnEngine.swift */; };
-		3A87E19C232A325F0026BBC4 /* TransformGEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87E19B232A325F0026BBC4 /* TransformGEO.swift */; };
+		3A87E19C232A325F0026BBC4 /* NodeGEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87E19B232A325F0026BBC4 /* NodeGEO.swift */; };
 		3A969789230A81EE004E94D4 /* SphereGEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A969788230A81EE004E94D4 /* SphereGEO.swift */; };
 		3A96978B230A820C004E94D4 /* GEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96978A230A820C004E94D4 /* GEO.swift */; };
 		74F72E58223EB47200900030 /* ScnEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E54223EB47200900030 /* ScnEngine.swift */; };
 		74F72E5A223EB47200900030 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E56223EB47200900030 /* Engine.swift */; };
 		74F72E5B223EB47200900030 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E57223EB47200900030 /* Types.swift */; };
-		AF890ADC5EA99FBF62E2B317 /* Pods_GEO3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7285C644983D9E049E69D1C7 /* Pods_GEO3D.framework */; };
-		C4D97010298CC2DF5B992719 /* Pods_Demo_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10ABC9E8E38DB282B481D0C3 /* Pods_Demo_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +66,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		10ABC9E8E38DB282B481D0C3 /* Pods_Demo_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B5EA04EF7D84827200DCC29 /* Pods-GEO3D.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GEO3D.debug.xcconfig"; path = "Target Support Files/Pods-GEO3D/Pods-GEO3D.debug.xcconfig"; sourceTree = "<group>"; };
-		38ED0DD63A16867C7BA65F3A /* Pods-Demo App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo App.debug.xcconfig"; path = "Target Support Files/Pods-Demo App/Pods-Demo App.debug.xcconfig"; sourceTree = "<group>"; };
 		3A2840AF232A2FF1004A43B6 /* GEORepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEORepView.swift; sourceTree = "<group>"; };
+		3A296F04232A6A9A0089F106 /* BoxGEO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxGEO.swift; sourceTree = "<group>"; };
+		3A296F07232A6B7D0089F106 /* GEOContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEOContent.swift; sourceTree = "<group>"; };
+		3A296F0A232A6BD80089F106 /* GEOEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEOEffect.swift; sourceTree = "<group>"; };
 		3A31C5C6232A212A00373EA3 /* GEO3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEO3D.swift; sourceTree = "<group>"; };
 		3A31C5CE232A253D00373EA3 /* Demo App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A31C5D0232A253D00373EA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,23 +84,16 @@
 		3A31C5E7232A2DBF00373EA3 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		3A31C5EB232A2DD300373EA3 /* Obj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obj.swift; sourceTree = "<group>"; };
 		3A5D0519223F937C006CB577 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A84C9F0232A465B00CB6888 /* LiveVec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveVec.swift; sourceTree = "<group>"; };
 		3A874F12223F905800DE2414 /* GEO3D_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEO3D_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A87E19B232A325F0026BBC4 /* TransformGEO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformGEO.swift; sourceTree = "<group>"; };
+		3A87E19B232A325F0026BBC4 /* NodeGEO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeGEO.swift; sourceTree = "<group>"; };
 		3A969788230A81EE004E94D4 /* SphereGEO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphereGEO.swift; sourceTree = "<group>"; };
 		3A96978A230A820C004E94D4 /* GEO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEO.swift; sourceTree = "<group>"; };
-		61BF4704DF04AE3FE6DA6A40 /* Pods_GEO3D_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GEO3D_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7285C644983D9E049E69D1C7 /* Pods_GEO3D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GEO3D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F72E49223EB43400900030 /* GEO3D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEO3D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F72E54223EB47200900030 /* ScnEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScnEngine.swift; sourceTree = "<group>"; };
 		74F72E55223EB47200900030 /* RawEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawEngine.swift; sourceTree = "<group>"; };
 		74F72E56223EB47200900030 /* Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		74F72E57223EB47200900030 /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		74FD5D22223EC75000B61BAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		78F8615B71013933573AB2DA /* Pods-GEO3D.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GEO3D.release.xcconfig"; path = "Target Support Files/Pods-GEO3D/Pods-GEO3D.release.xcconfig"; sourceTree = "<group>"; };
-		8680CDDFFAB3C6EF352541DD /* Pods-GEO3D-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GEO3D-macOS.release.xcconfig"; path = "Target Support Files/Pods-GEO3D-macOS/Pods-GEO3D-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		C59F7A7ABEB4E1474EF77304 /* Pods-GEO3D-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GEO3D-macOS.debug.xcconfig"; path = "Target Support Files/Pods-GEO3D-macOS/Pods-GEO3D-macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		F3FC58A7D8FAA5CAC1034FC9 /* Pods-Demo App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo App.release.xcconfig"; path = "Target Support Files/Pods-Demo App/Pods-Demo App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +102,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A2840B3232A30F8004A43B6 /* GEO3D.framework in Frameworks */,
-				C4D97010298CC2DF5B992719 /* Pods_Demo_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				237C3D5AC33DC1D76AF0AE40 /* Pods_GEO3D_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF890ADC5EA99FBF62E2B317 /* Pods_GEO3D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,9 +142,6 @@
 		3A2840B2232A30F8004A43B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				10ABC9E8E38DB282B481D0C3 /* Pods_Demo_App.framework */,
-				7285C644983D9E049E69D1C7 /* Pods_GEO3D.framework */,
-				61BF4704DF04AE3FE6DA6A40 /* Pods_GEO3D_macOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -161,6 +149,7 @@
 		3A31C5C4232A20D300373EA3 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				74F72E57223EB47200900030 /* Types.swift */,
 				3A31C5E9232A2DC400373EA3 /* Protocol */,
 				3A31C5E2232A2D7000373EA3 /* Scn */,
 				3A31C5ED232A2E0300373EA3 /* Raw */,
@@ -226,19 +215,11 @@
 			path = Raw;
 			sourceTree = "<group>";
 		};
-		3A84C9EF232A464E00CB6888 /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				74F72E57223EB47200900030 /* Types.swift */,
-				3A84C9F0232A465B00CB6888 /* LiveVec.swift */,
-			);
-			path = Types;
-			sourceTree = "<group>";
-		};
 		3A87E19A232A32510026BBC4 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
-				3A87E19B232A325F0026BBC4 /* TransformGEO.swift */,
+				3A296F0A232A6BD80089F106 /* GEOEffect.swift */,
+				3A87E19B232A325F0026BBC4 /* NodeGEO.swift */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -256,7 +237,9 @@
 		3A969787230A81DA004E94D4 /* Content */ = {
 			isa = PBXGroup;
 			children = (
+				3A296F07232A6B7D0089F106 /* GEOContent.swift */,
 				3A969788230A81EE004E94D4 /* SphereGEO.swift */,
+				3A296F04232A6A9A0089F106 /* BoxGEO.swift */,
 			);
 			path = Content;
 			sourceTree = "<group>";
@@ -270,7 +253,6 @@
 				3A31C5CF232A253D00373EA3 /* Demo App */,
 				74F72E4A223EB43400900030 /* Products */,
 				3A2840B2232A30F8004A43B6 /* Frameworks */,
-				EFB470752F3318753AC9F899 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,24 +270,10 @@
 			isa = PBXGroup;
 			children = (
 				3A31C5C6232A212A00373EA3 /* GEO3D.swift */,
-				3A84C9EF232A464E00CB6888 /* Types */,
 				3A31C5C4232A20D300373EA3 /* Engine */,
 				3A969786230A81CF004E94D4 /* GEO */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		EFB470752F3318753AC9F899 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				38ED0DD63A16867C7BA65F3A /* Pods-Demo App.debug.xcconfig */,
-				F3FC58A7D8FAA5CAC1034FC9 /* Pods-Demo App.release.xcconfig */,
-				1B5EA04EF7D84827200DCC29 /* Pods-GEO3D.debug.xcconfig */,
-				78F8615B71013933573AB2DA /* Pods-GEO3D.release.xcconfig */,
-				C59F7A7ABEB4E1474EF77304 /* Pods-GEO3D-macOS.debug.xcconfig */,
-				8680CDDFFAB3C6EF352541DD /* Pods-GEO3D-macOS.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,12 +300,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A31C5DF232A253F00373EA3 /* Build configuration list for PBXNativeTarget "Demo App" */;
 			buildPhases = (
-				379C73A7B6F1BD6E75C23C2F /* [CP] Check Pods Manifest.lock */,
 				3A31C5CA232A253D00373EA3 /* Sources */,
 				3A31C5CB232A253D00373EA3 /* Frameworks */,
 				3A31C5CC232A253D00373EA3 /* Resources */,
 				3A2840B7232A30F8004A43B6 /* Embed Frameworks */,
-				FD66501F2006B001ADD38897 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -353,7 +319,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A874F19223F905800DE2414 /* Build configuration list for PBXNativeTarget "GEO3D-macOS" */;
 			buildPhases = (
-				09FB183D3C9F7CAAF2EE4E13 /* [CP] Check Pods Manifest.lock */,
 				3A874F0D223F905800DE2414 /* Headers */,
 				3A874F0E223F905800DE2414 /* Sources */,
 				3A874F0F223F905800DE2414 /* Frameworks */,
@@ -372,7 +337,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74F72E51223EB43400900030 /* Build configuration list for PBXNativeTarget "GEO3D" */;
 			buildPhases = (
-				3B1C1DC67ADFB18403196875 /* [CP] Check Pods Manifest.lock */,
 				74F72E44223EB43400900030 /* Headers */,
 				74F72E45223EB43400900030 /* Sources */,
 				74F72E46223EB43400900030 /* Frameworks */,
@@ -456,92 +420,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		09FB183D3C9F7CAAF2EE4E13 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GEO3D-macOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		379C73A7B6F1BD6E75C23C2F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Demo App-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3B1C1DC67ADFB18403196875 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GEO3D-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FD66501F2006B001ADD38897 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Demo App/Pods-Demo App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Demo App/Pods-Demo App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Demo App/Pods-Demo App-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		3A31C5CA232A253D00373EA3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -560,10 +438,12 @@
 				3A31C5EF232A2E5700373EA3 /* ScnRoot.swift in Sources */,
 				3A31C5F0232A2E5900373EA3 /* ScnObj.swift in Sources */,
 				3A874F1A223F907800DE2414 /* Engine.swift in Sources */,
+				3A296F06232A6A9A0089F106 /* BoxGEO.swift in Sources */,
+				3A296F0C232A6BD80089F106 /* GEOEffect.swift in Sources */,
 				3A31C5EA232A2DC900373EA3 /* Root.swift in Sources */,
 				3A874F1C223F907800DE2414 /* ScnEngine.swift in Sources */,
 				3A31C5EE232A2E5100373EA3 /* Obj.swift in Sources */,
-				3A84C9F2232A47A900CB6888 /* LiveVec.swift in Sources */,
+				3A296F09232A6B7D0089F106 /* GEOContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,17 +453,19 @@
 			files = (
 				3A96978B230A820C004E94D4 /* GEO.swift in Sources */,
 				3A31C5E4232A2D7D00373EA3 /* ScnRoot.swift in Sources */,
+				3A296F0B232A6BD80089F106 /* GEOEffect.swift in Sources */,
 				3A969789230A81EE004E94D4 /* SphereGEO.swift in Sources */,
 				3A31C5EC232A2DD300373EA3 /* Obj.swift in Sources */,
+				3A296F08232A6B7D0089F106 /* GEOContent.swift in Sources */,
 				3A31C5C7232A212A00373EA3 /* GEO3D.swift in Sources */,
-				3A84C9F1232A465B00CB6888 /* LiveVec.swift in Sources */,
 				74F72E5B223EB47200900030 /* Types.swift in Sources */,
 				3A2840B0232A2FF1004A43B6 /* GEORepView.swift in Sources */,
 				3A31C5E8232A2DBF00373EA3 /* Root.swift in Sources */,
-				3A87E19C232A325F0026BBC4 /* TransformGEO.swift in Sources */,
+				3A87E19C232A325F0026BBC4 /* NodeGEO.swift in Sources */,
 				74F72E58223EB47200900030 /* ScnEngine.swift in Sources */,
 				3A31C5E6232A2D8600373EA3 /* ScnObj.swift in Sources */,
 				74F72E5A223EB47200900030 /* Engine.swift in Sources */,
+				3A296F05232A6A9A0089F106 /* BoxGEO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +493,6 @@
 /* Begin XCBuildConfiguration section */
 		3A31C5E0232A253F00373EA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38ED0DD63A16867C7BA65F3A /* Pods-Demo App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -633,7 +514,6 @@
 		};
 		3A31C5E1232A253F00373EA3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3FC58A7D8FAA5CAC1034FC9 /* Pods-Demo App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -655,7 +535,6 @@
 		};
 		3A874F17223F905800DE2414 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C59F7A7ABEB4E1474EF77304 /* Pods-GEO3D-macOS.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -673,7 +552,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = se.hexagons.geo3d.macos;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
@@ -684,7 +563,6 @@
 		};
 		3A874F18223F905800DE2414 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8680CDDFFAB3C6EF352541DD /* Pods-GEO3D-macOS.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -702,7 +580,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = se.hexagons.geo3d.macos;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
@@ -835,7 +713,6 @@
 		};
 		74F72E52223EB43400900030 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B5EA04EF7D84827200DCC29 /* Pods-GEO3D.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -847,7 +724,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -864,7 +741,6 @@
 		};
 		74F72E53223EB43400900030 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78F8615B71013933573AB2DA /* Pods-GEO3D.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -876,7 +752,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

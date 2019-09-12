@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SphereGEO: GEO {
+public class SphereGEO: GEOContent {
     
     public init() {
 

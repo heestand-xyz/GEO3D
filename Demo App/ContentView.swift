@@ -10,21 +10,25 @@ import SwiftUI
 import GEO3D
 
 struct ContentView: View {
-//    @EnvironmentObject var geo3d: GEO3D<G3ScnEngine>
-    @State var sphere = SphereGEO()
+    @ObservedObject var sphere = SphereGEO()
+    @ObservedObject var box = BoxGEO()
+    @ObservedObject var node = NodeGEO()
+//    @State var sphere = SphereGEO()
+//    @State var box = BoxGEO()
+//    @State var node = NodeGEO()
     var body: some View {
-        ZStack {
+        VStack {
             GEORepView(geo: sphere)
-            VStack {
-                Spacer()
-                Slider(value: sphere.scale.y.bond)
-            }
+//            Slider(value: sphere.scale.y.bond)
+            GEORepView(geo: box)
+            Text("\(box.y)")
+            Slider(value: $box.y)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()//.environmentObject(GEO3D<G3ScnEngine>())
+        ContentView()
     }
 }
