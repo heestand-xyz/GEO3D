@@ -8,6 +8,14 @@
 
 import Foundation
 
-class SphereGEO: GEO {
+public class SphereGEO: GEO {
+    
+    public init() {
+
+        let sphere = GEO3D.engine.create(.sphere)
+        
+        super.init(obj: sphere)
+
+    }
     
 }
