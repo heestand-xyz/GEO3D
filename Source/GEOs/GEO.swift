@@ -10,6 +10,12 @@ import Foundation
 
 class GEO {
     
-//    let obj 
+    let obj: GEO3DObj
+    
+    let view: UIView
+    
+    init(obj: GEO3DObj) {
+        self.obj = obj
+    }
     
 }

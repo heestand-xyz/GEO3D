@@ -48,6 +48,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A31C5C4232A20D300373EA3 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				74F72E56223EB47200900030 /* Engine.swift */,
+				74F72E54223EB47200900030 /* ScnEngine.swift */,
+				74F72E55223EB47200900030 /* RawEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		3A31C5C5232A20F300373EA3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3A5D0519223F937C006CB577 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		3A969786230A81CF004E94D4 /* GEOs */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +88,7 @@
 			children = (
 				74FD5D22223EC75000B61BAE /* README.md */,
 				74F72E4B223EB43400900030 /* Source */,
+				3A31C5C5232A20F300373EA3 /* Resources */,
 				74F72E4A223EB43400900030 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,12 +105,9 @@
 		74F72E4B223EB43400900030 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3A969786230A81CF004E94D4 /* GEOs */,
-				74F72E56223EB47200900030 /* Engine.swift */,
 				74F72E57223EB47200900030 /* Types.swift */,
-				74F72E54223EB47200900030 /* ScnEngine.swift */,
-				74F72E55223EB47200900030 /* RawEngine.swift */,
-				3A5D0519223F937C006CB577 /* Info.plist */,
+				3A31C5C4232A20D300373EA3 /* Engine */,
+				3A969786230A81CF004E94D4 /* GEOs */,
 			);
 			path = Source;
 			sourceTree = "<group>";
