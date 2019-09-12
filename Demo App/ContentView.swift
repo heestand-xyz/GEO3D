@@ -11,8 +11,15 @@ import GEO3D
 
 struct ContentView: View {
 //    @EnvironmentObject var geo3d: GEO3D<G3ScnEngine>
+    @State var sphere = SphereGEO()
     var body: some View {
-        GEORepView(geo: SphereGEO())
+        ZStack {
+            GEORepView(geo: sphere)
+            VStack {
+                Spacer()
+                Slider(value: sphere.scale.y.bond)
+            }
+        }
     }
 }
 

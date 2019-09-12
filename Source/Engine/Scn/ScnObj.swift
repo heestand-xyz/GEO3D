@@ -29,8 +29,7 @@ public class G3ScnObj: G3Obj {
         }
     }
     public var rotation: G3Vec {
-        get {
-            return node.eulerAngles.vec }
+        get { return node.eulerAngles.vec }
         set {
             node.eulerAngles = newValue.scnVec
 //            for subNode in linkNodes {
@@ -39,8 +38,7 @@ public class G3ScnObj: G3Obj {
         }
     }
     public var scale: G3Vec {
-        get {
-            return node.scale.vec }
+        get { return node.scale.vec }
         set {
             node.scale = newValue.scnVec
 //            for subNode in linkNodes {

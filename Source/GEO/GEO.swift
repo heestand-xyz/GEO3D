@@ -12,16 +12,18 @@ import Live
 
 public class GEO {
     
-    let root: G3Root
-    let obj: G3Obj
+    var root: G3Root
+    var obj: G3Obj
     
-//    var position: Binding<G3Vec> = .zero
-    
+    public var position: LiveVec = .zero
+    public var rotation: LiveVec = .zero
+    public var scale: LiveVec = .one
+
     public var view: UIView {
         root.view
     }
     
-    var liveValues: [LiveValue] { return [] }
+    var liveValues: [LiveValue] { return [position, rotation, scale] }
     
     
     init(obj: G3Obj) {
@@ -30,7 +32,26 @@ public class GEO {
         self.obj = obj
         
         root.add(obj)
+     
+        Live.main.listenToFrames {
+            self.checkLive()
+        }
         
+    }
+    
+    func newValues() {
+        root.position = position.vec
+        root.rotation = rotation.vec
+        root.scale = scale.vec
+    }
+    
+    func checkLive() {
+        for liveValue in liveValues {
+            if liveValue.uniformIsNew {
+                newValues()
+                break
+            }
+        }
     }
     
 }

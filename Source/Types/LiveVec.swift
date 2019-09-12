@@ -8,10 +8,11 @@
 
 import CoreGraphics
 import Live
+import SceneKit
 
-class LiveVec: LiveValue {
+public class LiveVec: LiveValue {
     
-    var name: String?
+    public var name: String?
     
     public var x: LiveFloat
     public var y: LiveFloat
@@ -24,7 +25,7 @@ class LiveVec: LiveValue {
         return "live\(name != nil ? "[\(name!)]" : "")(x:\("\(_x)".zfill(3)),y:\("\(_y)".zfill(3)),z:\("\(_z)".zfill(3)))"
     }
     
-    var uniformIsNew: Bool {
+    public var uniformIsNew: Bool {
         return x.uniformIsNew || y.uniformIsNew || z.uniformIsNew
     }
     
@@ -34,8 +35,16 @@ class LiveVec: LiveValue {
     
     public static let zero = LiveVec(x: 0, y: 0, z: 0)
     public static let one = LiveVec(x: 1, y: 1, z: 1)
+    
+    var vec: G3Vec {
+        G3Vec(x: x.cg, y: y.cg, z: z.cg)
+    }
+    
+    var scnVec: SCNVector3 {
+        SCNVector3(x.cg, y.cg, z.cg)
+    }
        
-    enum Axis {
+    public enum Axis {
         case x
         case y
         case z
