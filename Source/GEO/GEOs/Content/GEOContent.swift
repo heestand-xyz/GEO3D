@@ -16,7 +16,7 @@ public class GEOContent: GEO {
         
         self.obj = obj
         
-        super.init()
+        super.init(name: obj.name ?? "-")
         
         root.add(obj)
         

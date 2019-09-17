@@ -32,14 +32,14 @@ public protocol G3Engine {
     func create(triangle: G3Triangle) -> G3Obj
     func create(line: G3Line) -> G3Obj
     
-    func clone(obj: G3Obj) -> G3Obj
-    func cloneGrid(obj: G3Obj,
-                   xCount: Int,
-                   xRange: ClosedRange<CGFloat>,
-                   yCount: Int,
-                   yRange: ClosedRange<CGFloat>,
-                   zCount: Int,
-                   zRange: ClosedRange<CGFloat>) -> G3Obj
+//    func clone(obj: G3Obj) -> G3Obj
+//    func cloneGrid(obj: G3Obj,
+//                   xCount: Int,
+//                   xRange: ClosedRange<CGFloat>,
+//                   yCount: Int,
+//                   yRange: ClosedRange<CGFloat>,
+//                   zCount: Int,
+//                   zRange: ClosedRange<CGFloat>) -> G3Obj
 
     func debug()
     

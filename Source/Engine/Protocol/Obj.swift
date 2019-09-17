@@ -30,6 +30,9 @@ public protocol G3Obj {
     var id: UUID { get }
     var name: String? { get set }
     
+//    var cloner: G3Obj? { get set }
+//    var clones: [G3Obj] { get set }
+    
 //    var sourceLinkObj: G3Obj? { get set }
 //    var linkObjs: [G3Obj] { get set }
     
@@ -60,6 +63,6 @@ public protocol G3Obj {
     
     func add(_ obj: G3Obj)
     
-    func clone() -> G3Obj
+//    func clone() -> G3Obj
     
 }

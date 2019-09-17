@@ -9,18 +9,43 @@
 import SwiftUI
 import GEO3D
 
+class Main: ObservableObject {
+    @Published var box = BoxGEO()
+    @Published var node1 = NodeGEO(as: "1")
+    @Published var node2 = NodeGEO(as: "2")
+    init() {
+        node1.inGeos.append(box)
+        node2.inGeos.append(node1)
+    }
+}
+
 struct ContentView: View {
-    @ObservedObject var sphere = SphereGEO()
-    @ObservedObject var box = BoxGEO()
-    @ObservedObject var node = NodeGEO()
+    @ObservedObject var main = Main()
     var body: some View {
         VStack {
-            GEORepView(geo: sphere)
-            Text("\(sphere.position.y)")
-            Slider(value: $sphere.position.y)
-            GEORepView(geo: box)
-            Text("\(box.position.y)")
-            Slider(value: $box.position.y)
+            
+            VStack {
+                GEORepView(geo: main.box)
+                Text("\(main.box.scale.y)")
+                Slider(value: $main.box.scale.y)
+            }
+            
+            Divider()
+            
+            VStack {
+                GEORepView(geo: main.node1)
+                Text("\(main.node1.position.y)")
+                Slider(value: $main.node1.position.y)
+            }
+            
+            Divider()
+            
+            VStack {
+                GEORepView(geo: main.node2)
+                Text("\(main.node2.position.x)")
+                Slider(value: $main.node2.position.x)
+            }
+            
         }
     }
 }

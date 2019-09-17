@@ -11,9 +11,9 @@ import CoreGraphics
 
 public class NodeGEO: GEOEffect {
 
-    public override init() {
+    public init(as postfix: String = "") {
         
-        super.init()
+        super.init(name: "node:\(postfix)")
         
     }
 

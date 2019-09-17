@@ -22,6 +22,8 @@ public class G3ScnRoot: G3ScnObj, G3Root {
     }
     #endif
     
+//    public var objs: [G3Obj] = []
+
     #if os(iOS)
     public let view: UIView
     #elseif os(macOS)
@@ -84,20 +86,32 @@ public class G3ScnRoot: G3ScnObj, G3Root {
         
     }
     
-//    public override func add(_ obj: G3Obj) {
-//        let scnGeo3DObj = obj as! G3ScnObj
-//        scn.rootNode.addChildNode(scnGeo3DObj.node)
-//    }
-    
-    public func add(_ obj: G3Obj, to parentObj: G3Obj) {
+    public override func add(_ obj: G3Obj) {
         let scnGeo3DObj = obj as! G3ScnObj
-        let scnGeo3DObjParent = parentObj as! G3ScnObj
-        scnGeo3DObjParent.node.addChildNode(scnGeo3DObj.node)
+//        let node = scnGeo3DObj.node.clone()
+//        scnGeo3DObj.nodes.append(node)
+        scn.rootNode.addChildNode(scnGeo3DObj.node)
+//        objs.append(obj)
     }
+    
+//    public func add(_ obj: G3Obj, to parentObj: G3Obj) {
+//        let scnGeo3DObj = obj as! G3ScnObj
+//        let scnGeo3DObjParent = parentObj as! G3ScnObj
+//        scnGeo3DObjParent.node.addChildNode(scnGeo3DObj.node)
+//    }
     
     public func remove(_ obj: G3Obj) {
         let scnGeo3DObj = obj as! G3ScnObj
         scnGeo3DObj.node.removeFromParentNode()
     }
+    
+//    public func clone() -> G3Root {
+//        let root = G3ScnRoot()
+//        for obj in objs {
+//            root.add(obj)
+//        }
+//        clones.append(root)
+//        return root
+//    }
     
 }

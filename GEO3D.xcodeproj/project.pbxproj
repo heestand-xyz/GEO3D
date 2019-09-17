@@ -36,6 +36,7 @@
 		3A87E19C232A325F0026BBC4 /* NodeGEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87E19B232A325F0026BBC4 /* NodeGEO.swift */; };
 		3A969789230A81EE004E94D4 /* SphereGEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A969788230A81EE004E94D4 /* SphereGEO.swift */; };
 		3A96978B230A820C004E94D4 /* GEO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A96978A230A820C004E94D4 /* GEO.swift */; };
+		3ADE1DEA2330F4BA0070B0A6 /* Clones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADE1DE92330F4BA0070B0A6 /* Clones.swift */; };
 		74F72E58223EB47200900030 /* ScnEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E54223EB47200900030 /* ScnEngine.swift */; };
 		74F72E5A223EB47200900030 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E56223EB47200900030 /* Engine.swift */; };
 		74F72E5B223EB47200900030 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F72E57223EB47200900030 /* Types.swift */; };
@@ -88,6 +89,7 @@
 		3A87E19B232A325F0026BBC4 /* NodeGEO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeGEO.swift; sourceTree = "<group>"; };
 		3A969788230A81EE004E94D4 /* SphereGEO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SphereGEO.swift; sourceTree = "<group>"; };
 		3A96978A230A820C004E94D4 /* GEO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEO.swift; sourceTree = "<group>"; };
+		3ADE1DE92330F4BA0070B0A6 /* Clones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clones.swift; sourceTree = "<group>"; };
 		74F72E49223EB43400900030 /* GEO3D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GEO3D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F72E54223EB47200900030 /* ScnEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScnEngine.swift; sourceTree = "<group>"; };
 		74F72E55223EB47200900030 /* RawEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawEngine.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				74F72E57223EB47200900030 /* Types.swift */,
+				3ADE1DE92330F4BA0070B0A6 /* Clones.swift */,
 				3A31C5E9232A2DC400373EA3 /* Protocol */,
 				3A31C5E2232A2D7000373EA3 /* Scn */,
 				3A31C5ED232A2E0300373EA3 /* Raw */,
@@ -228,8 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				3A96978A230A820C004E94D4 /* GEO.swift */,
-				3A2840AD232A2FD1004A43B6 /* Extensions */,
 				3A2840AE232A2FDE004A43B6 /* GEOs */,
+				3A2840AD232A2FD1004A43B6 /* Extensions */,
 			);
 			path = GEO;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				3A2840B0232A2FF1004A43B6 /* GEORepView.swift in Sources */,
 				3A31C5E8232A2DBF00373EA3 /* Root.swift in Sources */,
 				3A87E19C232A325F0026BBC4 /* NodeGEO.swift in Sources */,
+				3ADE1DEA2330F4BA0070B0A6 /* Clones.swift in Sources */,
 				74F72E58223EB47200900030 /* ScnEngine.swift in Sources */,
 				3A31C5E6232A2D8600373EA3 /* ScnObj.swift in Sources */,
 				74F72E5A223EB47200900030 /* Engine.swift in Sources */,

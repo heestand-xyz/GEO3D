@@ -58,24 +58,34 @@ public class G3ScnEngine: G3Engine {
         switch kind {
         case .node:
             scnGeoPrim = G3ScnObj(node: SCNNode())
+            scnGeoPrim.name = "node"
         case .plane:
             scnGeoPrim = G3ScnObj(geometry: SCNPlane(width: 1, height: 1))
+            scnGeoPrim.name = "plane"
         case .box:
             scnGeoPrim = G3ScnObj(geometry: SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0.1))
+            scnGeoPrim.name = "box"
         case .sphere:
             scnGeoPrim = G3ScnObj(geometry: SCNSphere(radius: 0.5)) // .isGeodesic
+            scnGeoPrim.name = "sphere"
         case .pyramid:
             scnGeoPrim = G3ScnObj(geometry: SCNPyramid(width: 1.5, height: 1, length: 1.5)) // 146.5 230.4
+            scnGeoPrim.name = "pyramid"
         case .cone:
             scnGeoPrim = G3ScnObj(geometry: SCNCone(topRadius: 0, bottomRadius: 1, height: 1))
+            scnGeoPrim.name = "cone"
         case .cylinder:
             scnGeoPrim = G3ScnObj(geometry: SCNCylinder(radius: 1, height: 1))
+            scnGeoPrim.name = "cylinder"
         case .capsule:
             scnGeoPrim = G3ScnObj(geometry: SCNCapsule(capRadius: 0.5, height: 1))
+            scnGeoPrim.name = "capsule"
         case .tube:
             scnGeoPrim = G3ScnObj(geometry: SCNTube(innerRadius: 0.5, outerRadius: 1, height: 1))
+            scnGeoPrim.name = "tube"
         case .torus:
             scnGeoPrim = G3ScnObj(geometry: SCNTorus(ringRadius: 1, pipeRadius: 0.5))
+            scnGeoPrim.name = "torus"
         }
                 
         return scnGeoPrim
@@ -184,36 +194,36 @@ public class G3ScnEngine: G3Engine {
 
     }
     
-    public func clone(obj: G3Obj) -> G3Obj {
-        return (obj as! G3ScnObj).clone()
-    }
+//    public func clone(obj: G3Obj) -> G3Obj {
+//        return (obj as! G3ScnObj).clone()
+//    }
     
-    public func cloneGrid(obj: G3Obj,
-                          xCount: Int = 5,
-                          xRange: ClosedRange<CGFloat> = -0.5...0.5,
-                          yCount: Int = 5,
-                          yRange: ClosedRange<CGFloat> = -0.5...0.5,
-                          zCount: Int = 5,
-                          zRange: ClosedRange<CGFloat> = -0.5...0.5) -> G3Obj {
-        var node = create(.node)
-        node.name = "Clone Grid"
-        for x in 0..<xCount {
-            let xf = CGFloat(x) / CGFloat(xCount - 1)
-            let xp = xRange.lowerBound + xf * (xRange.upperBound - xRange.lowerBound)
-            for y in 0..<yCount {
-                let yf = CGFloat(y) / CGFloat(yCount - 1)
-                let yp = yRange.lowerBound + yf * (yRange.upperBound - yRange.lowerBound)
-                for z in 0..<zCount {
-                    let zf = CGFloat(z) / CGFloat(zCount - 1)
-                    let zp = zRange.lowerBound + zf * (zRange.upperBound - zRange.lowerBound)
-                    var objClone = obj.clone()
-                    objClone.position = G3Vec(x: xp, y: yp, z: zp)
-                    node.add(objClone)
-                }
-            }
-        }
-        return node
-    }
+//    public func cloneGrid(obj: G3Obj,
+//                          xCount: Int = 5,
+//                          xRange: ClosedRange<CGFloat> = -0.5...0.5,
+//                          yCount: Int = 5,
+//                          yRange: ClosedRange<CGFloat> = -0.5...0.5,
+//                          zCount: Int = 5,
+//                          zRange: ClosedRange<CGFloat> = -0.5...0.5) -> G3Obj {
+//        var node = create(.node)
+//        node.name = "Clone Grid"
+//        for x in 0..<xCount {
+//            let xf = CGFloat(x) / CGFloat(xCount - 1)
+//            let xp = xRange.lowerBound + xf * (xRange.upperBound - xRange.lowerBound)
+//            for y in 0..<yCount {
+//                let yf = CGFloat(y) / CGFloat(yCount - 1)
+//                let yp = yRange.lowerBound + yf * (yRange.upperBound - yRange.lowerBound)
+//                for z in 0..<zCount {
+//                    let zf = CGFloat(z) / CGFloat(zCount - 1)
+//                    let zp = zRange.lowerBound + zf * (zRange.upperBound - zRange.lowerBound)
+//                    var objClone = obj.clone()
+//                    objClone.position = G3Vec(x: xp, y: yp, z: zp)
+//                    node.add(objClone)
+//                }
+//            }
+//        }
+//        return node
+//    }
     
     public func addRoot(_ root: G3Root) {
         var root = root

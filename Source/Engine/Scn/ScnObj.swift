@@ -14,7 +14,14 @@ public class G3ScnObj: G3Obj {
     public var name: String?
     
     let node: SCNNode
+//    var nodes: [SCNNode] = []
+
+//    public var cloner: G3Obj?
+//    public var clones: [G3Obj] = []
     
+//    public var subClones: [G3Obj] = []
+//    var cloneCloned: (() -> ())?
+
 //    public var sourceLinkObj: G3Obj?
 //    public var linkObjs: [G3Obj] = []
 //    public var linkNodes: [SCNNode] = []
@@ -22,7 +29,19 @@ public class G3ScnObj: G3Obj {
     public var position: G3Vec {
         get { return node.position.vec }
         set {
+            print("position", name ?? "-")//, "with clones", clones.map({$0.name ?? "-"}))//, "with sub clones", subClones.map({$0.name ?? "-"}))
             node.position = newValue.scnVec
+//            for node in nodes {
+//                node.position = newValue.scnVec
+//            }
+//            for obj in clones {
+//                var obj = obj
+//                obj.position = newValue
+//            }
+//            for obj in subClones {
+//                var obj = obj
+//                obj.position = newValue
+//            }
 //            for subNode in linkNodes {
 //                subNode.position = newValue.scnVec
 //            }
@@ -31,7 +50,19 @@ public class G3ScnObj: G3Obj {
     public var rotation: G3Vec {
         get { return node.eulerAngles.vec }
         set {
+            print("rotation", name ?? "-")//, "with clones", clones.map({$0.name ?? "-"}))//, "with sub clones", subClones.map({$0.name ?? "-"}))
             node.eulerAngles = newValue.scnVec
+//            for node in nodes {
+//                node.eulerAngles = newValue.scnVec
+//            }
+//            for obj in clones {
+//                var obj = obj
+//                obj.rotation = newValue
+//            }
+//            for obj in subClones {
+//                var obj = obj
+//                obj.rotation = newValue
+//            }
 //            for subNode in linkNodes {
 //                subNode.eulerAngles = newValue.scnVec
 //            }
@@ -40,7 +71,19 @@ public class G3ScnObj: G3Obj {
     public var scale: G3Vec {
         get { return node.scale.vec }
         set {
+            print("scale", name ?? "-")//, "with clones", clones.map({$0.name ?? "-"}))//, "with sub clones", subClones.map({$0.name ?? "-"}))
             node.scale = newValue.scnVec
+//            for node in nodes {
+//                node.scale = newValue.scnVec
+//            }
+//            for obj in clones {
+//                var obj = obj
+//                obj.scale = newValue
+//            }
+//            for obj in subClones {
+//                var obj = obj
+//                obj.scale = newValue
+//            }
 //            for subNode in linkNodes {
 //                subNode.scale = newValue.scnVec
 //            }
@@ -86,20 +129,27 @@ public class G3ScnObj: G3Obj {
     public func transform(by trans: G3Trans) { transform +*= trans }
     
     public func add(_ obj: G3Obj) {
-        print("add", name ?? "-", "->", obj.name ?? "-")
+        print("add", obj.name ?? "-", "to", name ?? "-")
         let scnGeo3DObj = obj as! G3ScnObj
+//        let node = scnGeo3DObj.node.clone()
+//        scnGeo3DObj.nodes.append(node)
         node.addChildNode(scnGeo3DObj.node)
     }
     
-    public func clone() -> G3Obj {
-        print("clone", name ?? "-")
-        let newNode = node.clone()
-//        let subNode = SCNNode()
-//        subNode.addChildNode(newNode)
-        let newObj = G3ScnObj(node: newNode/*subNode*/)
-//        link(newObj, with: newNode)
-        return newObj
-    }
+//    public func clone() -> G3Obj {
+//        print("clone", name ?? "-")
+//        let node = self.node.clone()
+////        let subNode = SCNNode()
+////        subNode.addChildNode(newNode)
+//        let obj = G3ScnObj(node: node/*subNode*/)
+//        obj.cloner = self
+////        subClones = obj.clones
+////        cloneCloned...
+//        obj.name = "clone:\(self.name ?? "")"
+////        link(newObj, with: newNode)
+//        clones.append(obj)
+//        return obj
+//    }
     
 //    func link(_ newObj: G3ScnObj, with newNode: SCNNode) {
 //        print("link", name ?? "-", "->", newObj.name ?? "-")

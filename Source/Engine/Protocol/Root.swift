@@ -16,6 +16,8 @@ public protocol G3Root: G3Obj {
     
     var id: UUID { get }
     
+//    var objs: [G3Obj] { get set }
+
     #if os(iOS)
     var view: UIView { get }
     var snapshot: UIImage { get }
@@ -28,7 +30,7 @@ public protocol G3Root: G3Obj {
 
     init(frame: CGRect?, ortho: Bool, debug: Bool)
 
-    func add(_ obj: G3Obj, to parentObj: G3Obj)
+//    func add(_ obj: G3Obj, to parentObj: G3Obj)
     
     func remove(_ obj: G3Obj)
     
